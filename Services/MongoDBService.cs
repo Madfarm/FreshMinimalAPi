@@ -22,6 +22,10 @@ public class MongoDBService
         await _fruitsCollection.InsertOneAsync(newFruit);
 
         return;
+    }
 
+    public async Task<List<Fruit>> GetAsync()
+    {
+        return await _fruitsCollection.Find(new BsonDocument()).ToListAsync();
     }
 }

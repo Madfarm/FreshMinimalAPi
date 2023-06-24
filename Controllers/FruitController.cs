@@ -14,7 +14,7 @@ public class FruitsController : Controller
     [HttpGet]
     public async Task<List<Fruit>> Get()
     {
-
+        return await _mongoDBService.GetAsync();
     }
 
     [HttpPost]
