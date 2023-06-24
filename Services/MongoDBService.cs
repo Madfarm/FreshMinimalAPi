@@ -10,4 +10,18 @@ public class MongoDBService
         IMongoDatabase database = client.GetDatabase(mongoDBSettings.Value.DatabaseName);
         _fruitsCollection = database.GetCollection<Fruit>(mongoDBSettings.Value.CollectionName);
     }
+
+    public async Task CreateAsync(FruitCreateDto fruit)
+    {
+        Fruit newFruit = new()
+        {
+            Name = fruit.Name,
+            Price = fruit.Price,
+            Quantity = fruit.Quantity
+        };
+        await _fruitsCollection.InsertOneAsync(newFruit);
+
+        return;
+
+    }
 }

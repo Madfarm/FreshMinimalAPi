@@ -20,11 +20,12 @@ public class FruitsController : Controller
     [HttpPost]
     public async Task<IActionResult> CreateFruit([FromBody] FruitCreateDto fruit)
     {
-
+        await _mongoDBService.CreateAsync(fruit);
+        return CreatedAtAction(nameof(Get), new {id = fruit.Id }, fruit);
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateFruit(string id, [FromBody] )
+    public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
     {
 
     }
