@@ -1,6 +1,7 @@
 global using FruitStand.Data;
 global using FruitStand.Models;
 global using FruitStand.Services;
+global using FruitStand.Controllers;
 global using MongoDB.Bson;
 global using MongoDB.Bson.Serialization.Attributes;
 global using MongoDB.Driver;
