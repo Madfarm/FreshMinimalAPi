@@ -1,6 +1,6 @@
 var builder = WebApplication.CreateBuilder(args);
 
-builder.Services.Configure<FruitStandDatabaseSettings>(builder.Configuration.GetSection("MongoDB"))
+builder.Services.Configure<FruitStandDatabaseSettings>(builder.Configuration.GetSection("MongoDB"));
 builder.Services.AddSingleton<MongoDBService>();
 // Add services to the container.
 
