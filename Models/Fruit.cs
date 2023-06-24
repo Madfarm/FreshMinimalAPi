@@ -8,4 +8,5 @@ public record Fruit
     public string Name { get; init; } = null!;
     public int Price { get; init; }
     public int Quantity { get; init; }
+    public DateTimeOffset DateCreated { get; init; }
 }
