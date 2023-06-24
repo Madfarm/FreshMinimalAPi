@@ -18,21 +18,27 @@ public class FruitsController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateFruit([FromBody] FruitCreateDto fruit)
+    public async Task<IActionResult> CreateFruit([FromBody] FruitCreateDto fruitDto)
     {
+        Fruit fruit = new()
+        {
+            Name = fruitDto.Name,
+            Price = fruitDto.Price,
+            Quantity = fruitDto.Quantity
+        };
         await _mongoDBService.CreateAsync(fruit);
-        return CreatedAtAction(nameof(Get), new {id = fruit.Id }, fruit);
+        return CreatedAtAction(nameof(Get), new { id = fruit.Id }, fruit);
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
-    {
+    // [HttpPut("{id}")]
+    // public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
+    // {
 
-    }
+    // }
 
-    [HttpDelete("{id}")]
-    public async Task<IActionResult> DeleteFruit(string id)
-    {
+    // [HttpDelete("{id}")]
+    // public async Task<IActionResult> DeleteFruit(string id)
+    // {
 
-    }
+    // }
 }

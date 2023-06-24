@@ -11,15 +11,9 @@ public class MongoDBService
         _fruitsCollection = database.GetCollection<Fruit>(mongoDBSettings.Value.CollectionName);
     }
 
-    public async Task CreateAsync(FruitCreateDto fruit)
+    public async Task CreateAsync(Fruit fruit)
     {
-        Fruit newFruit = new()
-        {
-            Name = fruit.Name,
-            Price = fruit.Price,
-            Quantity = fruit.Quantity
-        };
-        await _fruitsCollection.InsertOneAsync(newFruit);
+        await _fruitsCollection.InsertOneAsync(fruit);
 
         return;
     }
