@@ -1,6 +1,6 @@
 namespace FruitStand.Dtos;
 
-public record FruitCreateDto
+public record FruitDto
 {
     [BsonId]
     [BsonRepresentation(BsonType.ObjectId)]
