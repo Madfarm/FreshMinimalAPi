@@ -24,7 +24,8 @@ public class FruitsController : Controller
         {
             Name = fruitDto.Name,
             Price = fruitDto.Price,
-            Quantity = fruitDto.Quantity
+            Quantity = fruitDto.Quantity,
+            DateCreated = DateTimeOffset.UtcNow
         };
         await _mongoDBService.CreateAsync(fruit);
         return CreatedAtAction(nameof(Get), new { id = fruit.Id }, fruit);
