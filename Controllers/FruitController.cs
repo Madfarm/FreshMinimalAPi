@@ -18,13 +18,13 @@ public class FruitsController : Controller
     }
 
     [HttpPost]
-    public async Task<IActionResult> CreateFruit([FromBody] Fruit fruit)
+    public async Task<IActionResult> CreateFruit([FromBody] FruitCreateDto fruit)
     {
 
     }
 
     [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateFruit(string id)
+    public async Task<IActionResult> UpdateFruit(string id, [FromBody] )
     {
 
     }
