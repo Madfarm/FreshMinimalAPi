@@ -40,11 +40,26 @@ public class FruitsController : Controller
 
     
 
-    // [HttpPut("{id}")]
-    // public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
-    // {
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto newFruit)
+    {
+        var existingFruit = await _mongoDBService.GetFruitAsync(id);
 
-    // }
+        if(existingFruit is null)
+        {
+            return NotFound();
+        }
+
+        Fruit updatedFruit = existingFruit with
+        {
+            Price = newFruit.Price,
+            Quantity = newFruit.Quantity
+        };
+
+        await _mongoDBService.UpdateFruitAsync(updatedFruit);
+
+        return NoContent();
+    }
 
     // [HttpDelete("{id}")]
     // public async Task<IActionResult> DeleteFruit(string id)
