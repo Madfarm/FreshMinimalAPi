@@ -3,6 +3,7 @@ namespace FruitStand.Services;
 public class MongoDBService
 {
     private readonly IMongoCollection<Fruit> _fruitsCollection;
+    private readonly FilterDefinitionBuilder<Fruit> filterBuilder = Builders<Fruit>.Filter;
 
     public MongoDBService(IOptions<FruitStandDatabaseSettings> mongoDBSettings)
     {
@@ -21,5 +22,10 @@ public class MongoDBService
     public async Task<List<Fruit>> GetAsync()
     {
         return await _fruitsCollection.Find(new BsonDocument()).ToListAsync();
+    }
+
+    public async Task<Fruit> GetFruitAsync()
+    {
+        return await _fruitsCollection.Find
     }
 }

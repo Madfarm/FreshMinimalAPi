@@ -28,14 +28,14 @@ public class FruitsController : Controller
             DateCreated = DateTimeOffset.UtcNow
         };
         await _mongoDBService.CreateAsync(fruit);
-        return CreatedAtAction(nameof(Get), new { id = fruit.Id }, fruit);
+        return CreatedAtAction(nameof(Get), new { id = fruit.Id }, fruit.AsDto());
     }
 
-    // [HttpPut("{id}")]
-    // public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
-    // {
-
-    // }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
+    {
+        
+    }
 
     // [HttpDelete("{id}")]
     // public async Task<IActionResult> DeleteFruit(string id)
