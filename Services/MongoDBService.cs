@@ -29,4 +29,12 @@ public class MongoDBService
         var filter = filterBuilder.Eq(fruit => fruit.Id, id);
         return await _fruitsCollection.Find(filter).SingleOrDefaultAsync();
     }
+
+    public async Task<ReplaceOneResult> UpdateFruitAsync(string id, Fruit newFruit)
+    {
+        var filter = filterBuilder.Eq(fruit => fruit.Id, id);
+        var oldFruit = await _fruitsCollection.Find(filter).SingleOrDefaultAsync();
+
+        return await _fruitsCollection.ReplaceOneAsync(filter, newFruit);
+    }
 }
