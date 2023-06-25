@@ -24,8 +24,9 @@ public class MongoDBService
         return await _fruitsCollection.Find(new BsonDocument()).ToListAsync();
     }
 
-    public async Task<Fruit> GetFruitAsync()
+    public async Task<Fruit> GetFruitAsync(string id)
     {
-        return await _fruitsCollection.Find
+        var filter = filterBuilder.Eq(fruit => fruit.Id, id);
+        return await _fruitsCollection.Find(filter).SingleOrDefaultAsync();
     }
 }
