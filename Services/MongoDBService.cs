@@ -35,4 +35,10 @@ public class MongoDBService
         var filter = filterBuilder.Eq(item => item.Id, newFruit.Id);
         return await _fruitsCollection.ReplaceOneAsync(filter, newFruit);
     }
+
+    public async Task<DeleteResult> DeleteFruitAsync(string id)
+    {
+        var filter = filterBuilder.Eq(fruit => fruit.Id, id);
+        return await _fruitsCollection.DeleteOneAsync(filter);
+    }
 }
