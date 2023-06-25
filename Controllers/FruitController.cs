@@ -12,9 +12,15 @@ public class FruitsController : Controller
     }
 
     [HttpGet]
-    public async Task<List<Fruit>> Get()
+    public async Task<List<Fruit>> GetFruits()
     {
         return await _mongoDBService.GetAsync();
+    }
+
+    [HttpGet("{id}")]
+    public async Task<Fruit> GetFruit(string id)
+    {
+        return await _mongoDBService.GetFruitAsync(id);
     }
 
     [HttpPost]
@@ -28,14 +34,16 @@ public class FruitsController : Controller
             DateCreated = DateTimeOffset.UtcNow
         };
         await _mongoDBService.CreateAsync(fruit);
-        return CreatedAtAction(nameof(Get), new { id = fruit.Id }, fruit.AsDto());
+        return CreatedAtAction(nameof(GetFruits), new { id = fruit.Id }, fruit.AsDto());
     }
 
-    [HttpPut("{id}")]
-    public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
-    {
-        
-    }
+    
+
+    // [HttpPut("{id}")]
+    // public async Task<IActionResult> UpdateFruit(string id, [FromBody] FruitUpdateDto changes)
+    // {
+
+    // }
 
     // [HttpDelete("{id}")]
     // public async Task<IActionResult> DeleteFruit(string id)
