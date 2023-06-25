@@ -18,9 +18,15 @@ public class FruitsController : Controller
     }
 
     [HttpGet("{id}")]
-    public async Task<FruitDto> GetFruit(string id)
+    public async Task<ActionResult<FruitDto>> GetFruit(string id)
     {
         var fruit = await _mongoDBService.GetFruitAsync(id);
+
+        if(fruit is null)
+        {
+            return NoContent();
+        }
+
         return fruit.AsDto();
     }
 
