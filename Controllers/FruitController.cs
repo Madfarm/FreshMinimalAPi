@@ -61,9 +61,18 @@ public class FruitsController : Controller
         return NoContent();
     }
 
-    // [HttpDelete("{id}")]
-    // public async Task<IActionResult> DeleteFruit(string id)
-    // {
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteFruit(string id)
+    {
+        var existingFruit = await _mongoDBService.GetFruitAsync(id);
 
-    // }
+        if (existingFruit is null)
+        {
+            return NotFound();
+        }
+
+        await _mongoDBService.DeleteFruitAsync(id);
+
+        return NoContent();
+    }
 }
